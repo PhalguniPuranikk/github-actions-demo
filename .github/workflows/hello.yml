@@ -1,11 +1,23 @@
-name: Hello Workflow
+name: Level 2 Workflow
 
 on: push
 
 jobs:
-  say-hello:
+  build:
     runs-on: ubuntu-latest
 
+    env:
+      NAME: Varsha
+
     steps:
-      - name: Print Hello
-        run: echo "Hello from GitHub Actions 🚀"
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Show files
+        run: ls
+
+      - name: Print message
+        run: echo "Hello $NAME 🚀"
+
+      - name: Read HTML file
+        run: cat index.html
