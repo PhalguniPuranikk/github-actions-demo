@@ -21,6 +21,4 @@ jobs:
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Deploy to GCS
-        run: |
-          gsutil -m rsync -r . gs://phalguni-hello-app
+     
