@@ -7,16 +7,20 @@
 </head>
 <body>
 
-  <script>
-document.getElementById("btn").addEventListener("click", function() {
-  console.log("Clicked 🔥");
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.querySelector("button");
 
-  fetch("https://backend-809312000002.asia-south1.run.app/api")
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("result").innerText = data.message;
-    })
-    .catch(err => console.error(err));
+  btn.addEventListener("click", function () {
+    console.log("Clicked 🔥");
+
+    fetch("https://backend-809312000002.asia-south1.run.app/api")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("result").innerText = data.message;
+      })
+      .catch(err => console.error(err));
+  });
 });
 </script>
 
