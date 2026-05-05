@@ -26,6 +26,14 @@ jobs:
           cd backend
           pip install -r requirements.txt
 
+      - name: Upload frontend artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-files
+          path: |
+            index.html
+            style.css
+
       - name: Build step
         run: echo "Build complete"
 
@@ -35,7 +43,13 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-files
 
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v2
@@ -56,7 +70,8 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v2
