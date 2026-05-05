@@ -1,4 +1,4 @@
-name: Deploy to GCP
+name: Deploy to GCS
 
 on:
   push:
@@ -21,6 +21,6 @@ jobs:
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Upload to bucket
+      - name: Deploy to GCS
         run: |
-          gsutil -m rsync -r . gs://varsha-hello-app
+          gsutil -m rsync -r . gs://phalguni-hello-app
