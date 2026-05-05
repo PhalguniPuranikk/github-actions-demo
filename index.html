@@ -15,6 +15,8 @@
 
   <script>
 function callBackend() {
+  console.log("Button clicked 🔥");   // 👈 add this
+
   fetch("https://backend-809312000002.asia-south1.run.app/api")
     .then(res => res.json())
     .then(data => {
