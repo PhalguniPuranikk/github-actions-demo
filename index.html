@@ -9,23 +9,21 @@
   <div class="container">
     <h1>Hello Phalguni Puranik 👋</h1>
     <p>This is my first GitHub Actions project 🚀</p>
-    <button onclick="callBackend()">Click Me</button>
+    <button id="btn">Click Me</button>
     <p id="result"></p>
   </div>
 
-  <script>
-function callBackend() {
-  console.log("Button clicked 🔥");   // 👈 add this
+<script>
+document.getElementById("btn").addEventListener("click", function() {
+  console.log("Clicked 🔥");
 
   fetch("https://backend-809312000002.asia-south1.run.app/api")
     .then(res => res.json())
     .then(data => {
       document.getElementById("result").innerText = data.message;
     })
-    .catch(err => {
-      console.error(err);
-    });
-}
+    .catch(err => console.error(err));
+});
 </script>
 
 </body>
