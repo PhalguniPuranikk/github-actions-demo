@@ -9,7 +9,22 @@
   <div class="container">
     <h1>Hello Phalguni Puranik 👋</h1>
     <p>This is my first GitHub Actions project 🚀</p>
-    <button>Click Me</button>
+    <button onclick="callBackend()">Click Me</button>
+    <p id="result"></p>
   </div>
+
+  <script>
+function callBackend() {
+  fetch("https://backend-809312000002.asia-south1.run.app/api")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("result").innerText = data.message;
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}
+</script>
+
 </body>
 </html>
