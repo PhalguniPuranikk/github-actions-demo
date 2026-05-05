@@ -17,21 +17,25 @@ jobs:
         run: echo "Building project..."
 
   deploy-frontend:
-    runs-on: ubuntu-latest
-    needs: build
+  runs-on: ubuntu-latest
+  needs: build
 
-    steps:
-      - uses: actions/checkout@v4
+  steps:
+    - uses: actions/checkout@v4
 
-      - name: Authenticate to GCP
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+    - name: Authenticate to GCP
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Upload to GCS
-        run: |
-          gsutil cp index.html gs://phalguni-hello-app/
-          gsutil cp style.css gs://phalguni-hello-app/
+    - name: Setup gcloud
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: Upload to GCS
+      run: |
+        gcloud auth list
+        gsutil cp index.html gs://phalguni-hello-app/
+        gsutil cp style.css gs://phalguni-hello-app/
 
   deploy-backend:
     runs-on: ubuntu-latest
