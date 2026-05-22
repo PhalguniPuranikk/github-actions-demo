@@ -38,7 +38,7 @@ jobs:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_GHA_CREDS_PATH }}
 
       - name: Deploy to Firebase Hosting
-        run: firebase deploy --only hosting  
+        run: firebase deploy --only hosting  --project phaluuuuuu --non-interactive
         env:
           GOOGLE_OAUTH_ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
           GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_GHA_CREDS_PATH }}
