@@ -39,10 +39,8 @@ jobs:
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_GHA_CREDS_PATH }}
 
-      - name: Initialize Firebase Project
-        run: |
-          firebase use --add phalguni-7a8ab
-          firebase init hosting --project phalguni-7a8ab --non-interactive
+      - name: Initialize Firebase Hosting
+        run: firebase init hosting --project phalguni-7a8ab --non-interactive
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_GHA_CREDS_PATH }}
 
