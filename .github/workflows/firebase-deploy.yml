@@ -23,6 +23,9 @@ jobs:
           workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
 
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -31,5 +34,12 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
+      - name: Verify Firebase Access
+        run: firebase projects:list
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_GHA_CREDS_PATH }}
+
       - name: Deploy to Firebase Hosting
-        run: firebase deploy --only hosting --project phalguni-7a8ab
+        run: firebase deploy --only hosting --project phalguni-7a8ab --non-interactive
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_GHA_CREDS_PATH }}
